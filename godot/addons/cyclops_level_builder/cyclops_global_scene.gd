@@ -74,8 +74,22 @@ var settings:CyclopsSettings = CyclopsSettings.new()
 
 var unit_sphere:GeometryMesh
 var builder:CyclopsLevelBuilder
-
-
+## Formerly get_node("/root/CyclopsAutoload")
+static var cyclops:CyclopsGlobalScene = null : 
+	set(v):
+		__global_scene_value = v
+	get():
+		#HACK but doesnt work on static vars
+		#if __global_scene_value == null:
+			#__global_scene_value = Node.new().get_node_or_null("/root/CyclopsAutoload") 
+		if __global_scene_value == null:
+			__global_scene_value = CyclopsAutoload #get_node("/root/CyclopsAutoload")
+		return __global_scene_value
+## Not entirely sure this is needed but safety save
+static var __global_scene_value:CyclopsGlobalScene = null
+func _enter_tree() -> void:
+	cyclops = self
+	pass
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	init_settings()
@@ -319,7 +333,7 @@ func draw_sphere(xform:Transform3D = Transform3D.IDENTITY, material:Material = n
 	
 
 func draw_selected_blocks(viewport_camera:Camera3D):
-	var global_scene:CyclopsGlobalScene = builder.get_node("/root/CyclopsAutoload")
+	var global_scene:CyclopsGlobalScene = CyclopsGlobalScene.cyclops#builder.get_node("/root/CyclopsAutoload")
 
 	var blocks:Array[CyclopsBlock] = builder.get_selected_blocks()
 	var active_block:CyclopsBlock = builder.get_active_block()
@@ -334,7 +348,7 @@ func draw_selected_blocks(viewport_camera:Camera3D):
 
 
 func draw_screen_rect(viewport_camera:Camera3D, p00:Vector2, p11:Vector2, material:Material):
-	var global_scene:CyclopsGlobalScene = builder.get_node("/root/CyclopsAutoload")
+	var global_scene:CyclopsGlobalScene = CyclopsGlobalScene.cyclops#builder.get_node("/root/CyclopsAutoload")
 
 	var p01:Vector2 = Vector2(p00.x, p11.y)
 	var p10:Vector2 = Vector2(p11.x, p00.y)

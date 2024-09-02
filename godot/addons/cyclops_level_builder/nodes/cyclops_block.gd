@@ -147,7 +147,7 @@ func build_from_block():
 
 	if Engine.is_editor_hint():
 #		var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
-		var global_scene = get_node("/root/CyclopsAutoload")
+		var global_scene = CyclopsGlobalScene.cyclops #get_node("/root/CyclopsAutoload")
 		display_mode = global_scene.builder.display_mode
 	
 #	print("block_data %s" % block_data)
@@ -168,7 +168,7 @@ func build_from_block():
 	var mesh:ArrayMesh
 
 	if Engine.is_editor_hint():
-		var global_scene = get_node("/root/CyclopsAutoload")
+		var global_scene = CyclopsGlobalScene.cyclops #get_node("/root/CyclopsAutoload")
 		mesh_wire.mesh = vol.create_mesh_wire(global_scene.outline_material)
 		#print ("added wireframe")
 
@@ -202,14 +202,14 @@ func _process(delta):
 
 	if Engine.is_editor_hint():
 #		var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
-		var global_scene = get_node("/root/CyclopsAutoload")
+		var global_scene = CyclopsGlobalScene.cyclops #get_node("/root/CyclopsAutoload")
 
 		if display_mode != global_scene.builder.display_mode:
 			dirty = true
 			return
 
 func draw_unit_labels(viewport_camera:Camera3D, local_to_world:Transform3D):
-	var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
+	var global_scene:CyclopsGlobalScene = CyclopsGlobalScene.cyclops #get_node("/root/CyclopsAutoload")
 
 	var font:Font = global_scene.units_font
 	var font_size:float = global_scene.units_font_size	
@@ -237,7 +237,7 @@ func append_mesh_outline(mesh:ImmediateMesh, viewport_camera:Camera3D, local_to_
 		#control_mesh.append_mesh_outline(mesh, viewport_camera, local_to_world, mat)
 	pass
 func append_mesh_wire(mesh:ImmediateMesh):
-	var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
+	var global_scene:CyclopsGlobalScene = CyclopsGlobalScene.cyclops #get_node("/root/CyclopsAutoload")
 	
 	var mat:Material = global_scene.outline_material
 	control_mesh.append_mesh_wire(mesh, mat)

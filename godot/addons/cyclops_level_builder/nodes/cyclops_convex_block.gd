@@ -96,19 +96,19 @@ func append_mesh(mesh:ImmediateMesh):
 	control_mesh.append_mesh(mesh, materials, default_material)
 
 func append_mesh_wire(mesh:ImmediateMesh):
-	var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
+	#var global_scene:CyclopsGlobalScene = CyclopsGlobalScene.cyclops
 	
-	var mat:Material = global_scene.outline_material
+	var mat:Material = CyclopsGlobalScene.cyclops.outline_material
 	control_mesh.append_mesh_wire(mesh, mat)
 
 func append_mesh_backfacing(mesh:ImmediateMesh):
-	var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
+	#var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
 	
-	var mat:Material = global_scene.tool_object_selected_material
+	var mat:Material = CyclopsGlobalScene.cyclops.tool_object_selected_material
 	control_mesh.append_mesh_backfacing(mesh, mat)
 
 func append_mesh_outline(mesh:ImmediateMesh, viewport_camera:Camera3D, local_to_world:Transform3D):
-	var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
+	var global_scene:CyclopsGlobalScene = CyclopsGlobalScene.cyclops
 	
 	var mat:Material = global_scene.tool_object_active_material if active else global_scene.tool_object_selected_material
 	control_mesh.append_mesh_outline(mesh, viewport_camera, local_to_world, mat)
@@ -121,4 +121,3 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-

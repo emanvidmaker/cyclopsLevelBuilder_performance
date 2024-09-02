@@ -76,8 +76,8 @@ func build_from_block():
 
 	if Engine.is_editor_hint():
 #		var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
-		var global_scene = get_node("/root/CyclopsAutoload")
-		display_mode = global_scene.builder.display_mode
+		#var global_scene = get_node("/root/CyclopsAutoload")
+		display_mode = CyclopsGlobalScene.cyclops.builder.display_mode
 	
 #	print("block_data %s" % block_data)
 #	print("vert points %s" % block_data.vertex_points)
@@ -96,7 +96,7 @@ func build_from_block():
 
 	if Engine.is_editor_hint():
 #		var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
-		var global_scene = get_node("/root/CyclopsAutoload")
+		var global_scene = CyclopsGlobalScene.cyclops #get_node("/root/CyclopsAutoload")
 		mesh_wire.mesh = vol.create_mesh_wire(global_scene.outline_material)
 
 		if display_mode == DisplayMode.Type.MATERIAL:
@@ -134,7 +134,7 @@ func _process(delta):
 		
 	if Engine.is_editor_hint():
 #		var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
-		var global_scene = get_node("/root/CyclopsAutoload")
+		var global_scene = CyclopsGlobalScene.cyclops # get_node("/root/CyclopsAutoload")
 
 		if display_mode != global_scene.builder.display_mode:
 			dirty = true

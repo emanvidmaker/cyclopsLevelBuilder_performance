@@ -189,7 +189,7 @@ func _enter_tree():
 	#Wait until everything is loaded	
 	await get_tree().process_frame
 	
-	var global_scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
+	var global_scene:CyclopsGlobalScene = CyclopsGlobalScene.cyclops#get_node("/root/CyclopsAutoload")
 	global_scene.builder = self
 	
 	switch_to_snapping_system(SnappingSystemGrid.new())
@@ -518,7 +518,7 @@ func switch_to_snapping_system(_snapping_system:CyclopsSnappingSystem):
 	snapping_tool_changed.emit()
 
 func get_global_scene()->CyclopsGlobalScene:
-	var scene:CyclopsGlobalScene = get_node("/root/CyclopsAutoload")
+	var scene:CyclopsGlobalScene = CyclopsGlobalScene.cyclops#get_node("/root/CyclopsAutoload")
 	return scene
 
 
