@@ -47,7 +47,8 @@ var default_material:Material = preload("res://addons/cyclops_level_builder/mate
 var display_mode:DisplayMode.Type = DisplayMode.Type.MATERIAL
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+#func _ready():
+func _enter_tree() -> void: ## using _enter_tree Lead to faster loading times 
 	mesh_instance = MeshInstance3D.new()
 	add_child(mesh_instance)
 	mesh_instance.gi_mode = GeometryInstance3D.GI_MODE_STATIC

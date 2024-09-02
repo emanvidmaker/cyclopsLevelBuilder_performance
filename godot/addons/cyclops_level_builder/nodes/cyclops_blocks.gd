@@ -114,12 +114,12 @@ func _process(delta):
 	if dirty:
 		rebuild_mesh()
 
-func _input(event):
-	if Engine.is_editor_hint():
-		pass
-		
-	#print(event.as_text())
-	pass
+#func _input(event):
+	#if Engine.is_editor_hint():
+		#pass
+		#
+	##print(event.as_text())
+	#pass
 
 func intersect_ray_closest(origin:Vector3, dir:Vector3)->IntersectResults:
 	return intersect_ray_closest_filtered(origin, dir, func(block:CyclopsConvexBlock): return true)

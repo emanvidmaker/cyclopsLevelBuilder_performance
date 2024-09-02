@@ -113,11 +113,11 @@ func append_mesh_outline(mesh:ImmediateMesh, viewport_camera:Camera3D, local_to_
 	var mat:Material = global_scene.tool_object_active_material if active else global_scene.tool_object_selected_material
 	control_mesh.append_mesh_outline(mesh, viewport_camera, local_to_world, mat)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+## Called when the node enters the scene tree for the first time.
+#func _ready():
+	#pass # Replace with function body.
+#
+#
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+	#pass
